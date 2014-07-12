@@ -1,3 +1,7 @@
+# This is the scrapy spider that is run.
+# The parse_item method of the DotawpSpider extracts the image data
+# from the site's pages which are then downloaded & stored by ImagePipeline
+
 from scrapy.selector import Selector
 from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 from scrapy.contrib.spiders import CrawlSpider, Rule
@@ -26,10 +30,12 @@ class DotawpSpider(CrawlSpider):
             follow = True
         ),
     )
+
     def parse_item(self, response):
         sel = Selector(response)
         i = DotawpItem()
-        if not 'tag' in response.url and not 'page' in response.url and \
+        if not 'tag' in response.url and \
+           not 'page' in response.url and \
            not 'category' in response.url:
 
             title = sel.xpath('//h1/text()').extract()[0]
