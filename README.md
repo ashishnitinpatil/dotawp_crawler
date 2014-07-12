@@ -24,7 +24,8 @@ Please refer to the [License file](/LICENSE.txt) for the licensing of the projec
     `cd <path_to_dotawp_dir>/DotaWp`
 * Execute the crawl  
     `python -m scrapy crawl dotawp`
-* Let the crawling finish. (time taken depends on number of images, project settings)
+* Let the crawling finish. (time taken depends on number of images, project settings)  
+    You can see the progress in the [logs](/DotaWp/logs.txt)
 * Rename the files by running the [rename_files](/DotaWp/rename_files.py) script.  
     You can double click the file or run the below command.  
     `python rename_files.py`
