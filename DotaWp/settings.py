@@ -19,7 +19,7 @@ ITEM_PIPELINES = {"scrapy.contrib.pipeline.images.ImagesPipeline": 1}
 
 # Logging
 LOG_ENABLED = True
-#LOG_FILE = "log.txt"
+LOG_FILE = "logs.txt"
 LOG_LEVEL = "DEBUG"
 
 # Max simultaneous page requests

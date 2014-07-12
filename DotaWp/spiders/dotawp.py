@@ -9,13 +9,8 @@ from DotaWp.items import DotawpItem
 from scrapy.log import ScrapyFileLogObserver, logging
 from urlparse import urlparse
 
-class DotawpSpider(CrawlSpider):
-    # Logging hack
-    def __init__(self, name=None, **kwargs):
-        ScrapyFileLogObserver(
-            open("logs.txt", 'a'), level=logging.DEBUG).start()
 
-        super(DotawpSpider, self).__init__(name, **kwargs)
+class DotawpSpider(CrawlSpider):
 
     name = 'dotawp'
     allowed_domains = ['www.dotawp.com']
@@ -33,13 +28,13 @@ class DotawpSpider(CrawlSpider):
 
     def parse_item(self, response):
         sel = Selector(response)
-        i = DotawpItem()
+        item = DotawpItem()
         if not 'tag' in response.url and \
            not 'page' in response.url and \
            not 'category' in response.url:
 
             title = sel.xpath('//h1/text()').extract()[0]
-            i['title'] = title.strip()
-            i['image_urls'] = [sel.xpath('//p/a/img/@src').extract()[0]]
+            item['title'] = title.strip()
+            item['image_urls'] = [sel.xpath('//p/a/img/@src').extract()[0]]
 
-        return i
+        return item
